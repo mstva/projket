@@ -1,34 +1,9 @@
-<!--<h1>Home#index</h1>-->
-<!--<p>Find me in app/views/home/index.html.erb</p>-->
+<% if account_signed_in? %>
+  welcome <%= current_account.name %>(@<%= current_account.username %>)
+  <%= button_to 'Edit Account', edit_account_registration_path, method: 'get' %>
+  <%= button_to 'Logout', destroy_account_session_path, method: 'delete' %>
+<% else %>
+  <%= button_to 'Login', new_account_session_path %>
+  <%= button_to 'Register', new_account_registration_path, method: 'get'%>
+<% end %>
 
-<!--<button><%#= link_to 'new user', new_user_path %></button>-->
-
-<!--<br>-->
-<!--<br>-->
-
-<!--<label for="cars">Choose a user:</label>-->
-
-<!--<select name="users" id="users">-->
-  <%# @users.each do |user| %>
-<!--    <option value="<%#= user.name %>"><%#= user.name %>(@<%#= user.username %>)</option>-->
-  <%# end %>
-<!--</select>-->
-
-<!--<script>-->
-<!--    function GetSelectedValue(){-->
-<!--        const e = document.getElementById("users");-->
-<!--        document.getElementById("result").innerHTML = e.options[e.selectedIndex].value;-->
-<!--    }-->
-
-<!--    function GetSelectedText(){-->
-<!--        const e = document.getElementById("users");-->
-<!--        document.getElementById("result").innerHTML = e.options[e.selectedIndex].text;-->
-<!--    }-->
-<!--</script>-->
-
-<!--<br/>-->
-<!--<br/>-->
-<!--<button type="button" onclick="GetSelectedValue()">Get Selected Value</button>-->
-<!--<button type="button" onclick="GetSelectedText()">Get Selected Text</button>-->
-
-<!--<p id="result"></p>-->
