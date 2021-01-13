@@ -29,4 +29,26 @@ ActiveRecord::Schema.define(version: 2021_01_13_161213) do
     t.index ["reset_password_token"], name: "index_accounts_on_reset_password_token", unique: true
   end
 
+  create_table "projects", force: :cascade do |t|
+    t.string "name"
+    t.text "description"
+    t.bigint "account_id", null: false
+    t.bigint "team_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["account_id"], name: "index_projects_on_account_id"
+    t.index ["team_id"], name: "index_projects_on_team_id"
+  end
+
+  create_table "teams", force: :cascade do |t|
+    t.string "name"
+    t.bigint "account_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["account_id"], name: "index_teams_on_account_id"
+  end
+
+  add_foreign_key "projects", "accounts"
+  add_foreign_key "projects", "teams"
+  add_foreign_key "teams", "accounts"
 end
